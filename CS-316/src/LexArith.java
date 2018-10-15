@@ -2,16 +2,30 @@
  * 
  * This class is a lexical analyzer for the tokens defined by the grammar:
  * 
-<plus> --> +
-<minus> --> -
-<times> --> *
-<div> --> /
-<LParen> --> "("
-<RParen> --> ")"
-<int> --> { <digit> }+
-<id> --> <letter> { <letter> | <digit> }
-<float> --> { <digit> }+ "." { <digit> }+
-<floatE> --> <float> (E|e) [+|-] { <digit> }+
+⟨letter⟩ → a | b | ... | z | A | B | ... | Z 
+⟨digit⟩ → 0 | 1 | ... | 9 
+⟨basic id⟩ → ⟨letter⟩ {⟨letter⟩ | ⟨digit⟩} 
+⟨letters and digits⟩ → {⟨letter⟩ | ⟨digit⟩}+ 
+⟨id⟩ → ⟨basic id⟩ { ("_" | "−") ⟨letters and digits⟩ }    // Note: "_" is the underscore char, "−" is the hyphen (i.e. minus) char. 
+⟨int⟩ → [+|−] {⟨digit⟩}+ 
+⟨float⟩ → [+|−] ( {⟨digit⟩}+ "." {⟨digit⟩}  |  "." {⟨digit⟩}+ ) 
+⟨floatE⟩ → ⟨float⟩ (e|E) [+|−] {⟨digit⟩}+ 
+⟨add⟩ → + 
+⟨sub⟩ → − 
+⟨mul⟩ → * 
+⟨div⟩ → / 
+⟨lt⟩ → "<" 
+⟨le⟩ → "<=" 
+⟨gt⟩ → ">" 
+⟨ge⟩ → ">=" 
+⟨eq⟩ → "=" 
+⟨LParen⟩ → "(" 
+⟨RParen⟩ → ")" 
+⟨quote⟩ → " ' "    // the single quote char 
+⟨false⟩ → "#f" | "#F" 
+⟨true⟩ → "#t" | "#T" 
+⟨period⟩ → "." 
+
  * 
  * This class implements a DFA that will accept the above tokens.
  * 
@@ -24,7 +38,7 @@
  * floats with exponentiation part Plus + Minus - Times * Div / LParen ( RParen
  * )
  * 
- * The DFA also uses the following 4 non-final states:
+ * The DFA also uses the following 5 non-final states:
  * 
  * state string recognized
  * 
@@ -55,25 +69,26 @@ public abstract class LexArith extends IO {
 		EPlusMinus, // 5
 
 		// final states
-		Id, // 18
-		Int, // 20
-		Add, // 19
-		Sub, // 21
-		Mul, // 6
-		Div, // 7p
-		LParen, // 8
-		RParen, // 9
-		Lt, // 10
-		Gt, // 11
-		Le, // 12
-		Ge, // 13
-		Eq, // 14
-		Quote, // 15
-		False, // 16
-		True, // 17
-		Period, // 22
-		Float, // 23
-		FloatE, // 24
+		Id, // 6
+		Int, // 7
+		Float, // 8
+		FloatE, // 9
+		Add, // 10
+		Sub, // 11
+		Mul, // 12
+		Div, // 13
+		Lt, // 14
+		Gt, // 15
+		Le, // 16
+		Ge, // 17
+		Eq, // 18
+		LParen, // 19
+		RParen, // 20
+		Quote, // 21
+		False, // 22
+		True, // 23
+		Period, // 24
+		
 
 		// keywords
 
@@ -184,16 +199,16 @@ public abstract class LexArith extends IO {
 				return State.Mul;
 			else if (c == '/')
 				return State.Div;
-			else if (c == '(')
-				return State.LParen;
-			else if (c == ')')
-				return State.RParen;
 			else if (c == '<')
 				return State.Lt;
 			else if (c == '>')
 				return State.Gt;
 			else if (c == '=')
 				return State.Eq;
+			else if (c == '(')
+				return State.LParen;
+			else if (c == ')')
+				return State.RParen;
 			else if (c == '\'')
 				return State.Quote;
 			else if (c == '#')
@@ -306,6 +321,20 @@ public abstract class LexArith extends IO {
 			} else {
 				return State.UNDEF;
 			}
+			
+		case EPlusMinus:
+			if (Character.isDigit(c)) {
+				return State.FloatE;
+			} else {
+				return State.UNDEF;
+			}
+			
+		case PlusMinusPeriod:
+			if (Character.isDigit(c)) {
+				return State.Float;
+			} else {
+				return State.UNDEF;
+			}
 
 		case Float:
 			if (Character.isDigit(c))
@@ -324,19 +353,13 @@ public abstract class LexArith extends IO {
 				return State.UNDEF;
 			}
 
-		case EPlusMinus:
-			if (Character.isDigit(c)) {
-				return State.FloatE;
-			} else {
-				return State.UNDEF;
-			}
-
 		case FloatE:
 			if (Character.isDigit(c)) {
 				return State.FloatE;
 			} else {
 				return State.UNDEF;
 			}
+			
 
 		case Keyword_define:
 			if (Character.isLetterOrDigit(c)) {
