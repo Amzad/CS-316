@@ -1,4 +1,4 @@
-// This class defines I/O variables and functions used by lexical analyzers and parsers.
+// This class defines I/O variables and functions used by the compiler/interpreter.
 
 import java.io.*;
 
@@ -41,11 +41,13 @@ public abstract class IO
 	public static void display(String s)
 	{
 		outStream.print(s);
+		System.out.print(s);
 	}
 
 	public static void displayln(String s)
 	{
-		outStream.println(s);
+		outStream.println("	" + s);
+		System.out.println("	" + s);
 	}
 
 	public static void setIO(String inFile, String outFile)

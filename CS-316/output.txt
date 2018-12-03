@@ -1,0 +1,15 @@
+	push a
+	push b
+	cons
+	cdr
+	push CS316
+	cons
+	car
+	push a
+	push b
+	cons
+	cdr
+	push CS316
+	cons
+	car
+	equal
