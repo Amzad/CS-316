@@ -34,6 +34,7 @@ class ExpList
 	void emitInstructions()
 	{
 		ExpList p = this;
+		//exp.emitInstructions();
 		do
 		{
 			p.exp.emitInstructions();

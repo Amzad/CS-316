@@ -4,7 +4,6 @@ class Int extends Atom
 	
 	Int(int i)
 	{
-		System.out.println("Int");
 		intElem = i;
 	}
 	

@@ -16,8 +16,14 @@ class FunDefListAndExp
 	}
 
 	void emitInstructions(){
+		//int funName = Compiler.hashLabel.get(funDefList.funDef.header.funName);
+		int size = Compiler.hashLabel.size() + 1;
+		IO.displayln(Compiler.indent + "goto " + size);
+		Compiler.label = size;
 		funDefList.emitInstructions();
+		IO.displayln(Integer.toString(Compiler.count)+ ":");
 		exp.emitInstructions();
 
 	}
+	
 }

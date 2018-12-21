@@ -19,7 +19,13 @@ class FunDef
 	}
 	
 	void emitInstructions() {
+		//Compiler.hashLabel.put(Compiler.count, header.funName);
+		//int funName = Compiler.hashLabel.get(header.funName);
+		int funName = Compiler.count;
+		//IO.displayln(funName + ":");
+		header.emitInstructions();
 		exp.emitInstructions();
+		IO.displayln(Compiler.indent + "return");
 		
 	}
 }

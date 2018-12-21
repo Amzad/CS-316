@@ -7,6 +7,7 @@ class ParameterList
 	{
 		id = s;
 		parameterList = p;
+		//System.out.println(id);
 	}
 
 	void printParseTree(String indent)
@@ -20,5 +21,9 @@ class ParameterList
 			IO.displayln(indent1 + indent1.length() + " <parameter> " + p.id);
 			p = p.parameterList;
 		} while ( p != null );
+	}
+	
+	void emitInstructions() {
+		IO.displayln("Testing");
 	}
 }

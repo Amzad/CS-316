@@ -1,0 +1,109 @@
+	goto 7
+1:
+	push #1
+	call 4, 1
+	if_f goto 8
+	push  0
+	goto 9
+8:
+	push  1
+	push #1
+	cdr
+	call 1, 1
+	add  2
+9:
+	return
+2:
+	push #2
+	push  0
+	le
+	push #1
+	call 4, 1
+	or  2
+	if_f goto 11
+	push  nil
+	goto 10
+11:
+	push #2
+	push  1
+	eq
+	if_f goto 12
+	push #1
+	car
+	goto 10
+12:
+	push #1
+	cdr
+	push #2
+	push  1
+	sub  2
+	call 2, 2
+	goto 10
+10:
+	return
+3:
+	push #1
+	call 4, 1
+	if_f goto 14
+	push  not-found
+	goto 13
+14:
+	push #1
+	push #1
+	car
+	car
+	equal
+	if_f goto 15
+	push #1
+	car
+	cdr
+	goto 13
+15:
+	push #1
+	push #1
+	cdr
+	call 3, 2
+	goto 13
+13:
+	return
+4:
+	push #1
+	push  nil
+	equal
+	return
+5:
+	push  a2
+	push  a1
+	push  b1
+	cons
+	push  a2
+	push  b2
+	cons
+	push  a3
+	push  b3
+	cons
+	push  nil
+	cons
+	cons
+	cons
+	call 3, 2
+	return
+6:
+	push  a4
+	push  a1
+	push  b1
+	cons
+	push  a2
+	push  b2
+	cons
+	push  a3
+	push  b3
+	cons
+	push  nil
+	cons
+	cons
+	cons
+	call 3, 2
+	return
+7:
+	call 5, 0

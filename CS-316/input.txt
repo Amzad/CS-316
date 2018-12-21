@@ -1,5 +1,32 @@
-(define (test-car_cdr)
-	(car (cons (cdr '(a . b)) 'CS316))
+(define (length list)
+  (if (null list) 0
+      (+ 1 (length (cdr list)))))
+
+(define (n-th list n)
+  (cond ((or (<= n 0) (null list)) '())
+        ((= n 1) (car list))
+        (else (n-th (cdr list) (- n 1)))))
+
+(define (find x list)
+  (cond ((null list) 'not-found)
+        ((equal x (car (car list))) (cdr (car list)))
+        (else (find x (cdr list)))))
+
+(define (null list)
+  (equal list '()))
+
+(define (find-test-1)
+  (find 'a2 '((a1 . b1) . ((a2 . b2) . ((a3 . b3) . ())
+                          )
+             )
+  )
 )
 
-/(test-car_cdr)
+(define (find-test-2)
+  (find 'a4 '((a1 . b1) . ((a2 . b2) . ((a3 . b3) . ())
+                          )
+             )
+  )
+)
+
+/(find-test-1)

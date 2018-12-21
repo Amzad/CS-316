@@ -62,16 +62,12 @@ public abstract class Parser extends LexAnalyzer
 	{
 		FunDefList funDefList = funDefList();
 		//System.out.println(t);
-		
 		if ( state == State.Div) {	
+			//System.out.println("testing");
 			getToken();
 			Exp exp = exp();
 			return new FunDefListAndExp(funDefList, exp);
 		}
-		//else return new FunDefListAndExp(null, funDefListAndExp);
-		
-		
-		
 		return null;
 		
 		

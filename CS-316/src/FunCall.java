@@ -24,5 +24,12 @@ class FunCall extends ListExp
 	void emitInstructions()
 	{
 		// to be coded by you
+		int x = Compiler.hashLabel.get(funName);
+		int y = Compiler.hashFormalParam.get(funName);
+		if (expList != null) {
+			expList.emitInstructions();
+		}
+		IO.displayln(Compiler.indent + "call " + x + ", " + y);
 	}
+	
 }

@@ -26,7 +26,8 @@ class Id extends Atom
 	void emitInstructions()
 	{
 		// to be coded by you
-		IO.displayln("push #" + id);
+		int x = Compiler.hashSeqParam.get(id);
+		IO.displayln(Compiler.indent + "push #" + x);
 		
 	}
 }

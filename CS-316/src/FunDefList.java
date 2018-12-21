@@ -21,9 +21,13 @@ class FunDefList
 	}
 	
 	void emitInstructions() {
+		//IO.displayln(Compiler.indent + "goto " + Compiler.count);
+		int funName = Compiler.hashLabel.get(funDef.header.funName);
+		IO.displayln(funName + ":");
 		funDef.emitInstructions();
+		if (funDefList != null) {
 		funDefList.emitInstructions();
 		
-		
+		}
 	}
 }

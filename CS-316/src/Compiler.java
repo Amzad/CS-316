@@ -4,9 +4,9 @@ public class Compiler extends Parser
 {
 	public static int label = 0;
 	public static final String indent = "\t";
-	static int count = 0;
+	static int count = 1;
 	
-	public static HashMap<String, Integer> hashLabel = new HashMap<String, Integer>();
+	public static HashMap<String, Integer>  hashLabel = new HashMap<String, Integer> ();
 	public static HashMap<String, Integer> hashFormalParam = new HashMap<String, Integer>();
 	public static HashMap<String, Integer> hashSeqParam = new HashMap<String, Integer>();
 
@@ -20,12 +20,17 @@ public class Compiler extends Parser
 		
 		getToken();
 		FunDefListAndExp fdeflistandexp = funDefListAndExp();  // build a parse tree
+		
 		if ( ! t.isEmpty() ) 
 			IO.displayln(t + "  -- unexpected symbol");
 		else if ( ! syntaxErrorFound )
 			fdeflistandexp.emitInstructions();
 		//fdeflistandexp.emitInstructions();
 		closeIO();
+		//System.out.println(hashLabel.toString());
+		//System.out.println(hashLabelRev.toString());
+		//System.out.println(hashFormalParam.toString());
+		
 		
 	}
 	
