@@ -4,6 +4,6 @@ abstract class SExp
 	{
 		IO.displayln(indent + indent.length() + " <S exp>");
 	}
-	
+
 	abstract void emitInstructions();
 }

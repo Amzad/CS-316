@@ -3,6 +3,7 @@ abstract class OperatorExp extends ListExp
 	ExpList expList; // This is null if <exp list> is empty.
 
 	abstract String getOp();
+	abstract String getInstruction();
 
 	void printParseTree(String indent)
 	{
@@ -15,8 +16,11 @@ abstract class OperatorExp extends ListExp
 		if ( expList != null )
 			expList.printParseTree(indent3);
 	}
-	
-	void emitInstructions() {
-		System.out.println("TESTR");
+
+	void emitInstructions()
+	{
+		if ( expList != null )
+			expList.emitInstructions();
+		IO.displayln(Compiler.indent + getInstruction());		
 	}
 }

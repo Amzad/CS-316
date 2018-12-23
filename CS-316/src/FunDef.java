@@ -17,4 +17,9 @@ class FunDef
 		header.printParseTree(indent1);
 		exp.printParseTree(indent1);
 	}
+	
+	void emitInstructions() {
+		exp.emitInstructions();
+		
+	}
 }

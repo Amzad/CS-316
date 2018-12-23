@@ -15,9 +15,9 @@ class True extends Atom
 		super.printParseTree1(indent);
 		IO.displayln(indent2 + indent2.length() + " #t");
 	}
-	
-	void emitInstructions() 
+
+	void emitInstructions()
 	{
-		IO.displayln("push #t");
+		IO.displayln(Compiler.indent + "push  " + "#t");
 	}
 }

@@ -2,12 +2,23 @@ class ExpList
 {
 	Exp exp;
 	ExpList expList;
-	static int argumentCounter = 0;
 	
 	ExpList(Exp e, ExpList el)
 	{
 		exp = e;
 		expList = el;
+	}
+
+	int numOfExps()
+	{
+		ExpList p = this;
+		int i = 0;
+		while ( p != null )
+		{
+			i++;
+			p = p.expList;
+		}
+		return i;
 	}
 	
 	void printParseTree(String indent)
@@ -19,13 +30,14 @@ class ExpList
 			p = p.expList;
 		} while ( p != null );
 	}
-	
-	void emitInstructions() {
-		exp.emitInstructions();
-		if (expList != null) {
-			expList.emitInstructions();
-		}
-		argumentCounter++;
-		//IO.display("push ");
+
+	void emitInstructions()
+	{
+		ExpList p = this;
+		do
+		{
+			p.exp.emitInstructions();
+			p = p.expList;
+		} while ( p != null );
 	}
 }

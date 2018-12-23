@@ -8,7 +8,7 @@ class FunDefList
 		funDef = f;
 		funDefList = fl;
 	}
-	
+
 	void printParseTree(String indent)
 	{
 		FunDefList p = this;
@@ -18,5 +18,12 @@ class FunDefList
 			IO.displayln("\n--------------------\n");
 			p = p.funDefList;
 		} while ( p != null );
+	}
+	
+	void emitInstructions() {
+		funDef.emitInstructions();
+		funDefList.emitInstructions();
+		
+		
 	}
 }

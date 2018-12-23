@@ -9,13 +9,9 @@ class Or extends OperatorExp
 	{
 		return "or";
 	}
-	
-	void emitInstructions() 
+
+	String getInstruction()
 	{
-		int current = expList.argumentCounter;
-		expList.emitInstructions();
-		int now = expList.argumentCounter - current;
-		IO.displayln("or " + now);
-		expList.argumentCounter = current;
+		return "or  " + expList.numOfExps();
 	}
 }

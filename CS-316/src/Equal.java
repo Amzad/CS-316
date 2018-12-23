@@ -9,11 +9,9 @@ class Equal extends OperatorExp
 	{
 		return "equal";
 	}
-	
-	void emitInstructions() 
+
+	String getInstruction()
 	{
-		expList.emitInstructions();
-		IO.displayln("equal");
-			
+		return "equal";
 	}
 }

@@ -9,13 +9,9 @@ class Div extends OperatorExp
 	{
 		return "/";
 	}
-	
-	void emitInstructions() 
+
+	String getInstruction()
 	{
-		int current = expList.argumentCounter;
-		expList.emitInstructions();
-		int now = expList.argumentCounter - current;
-		IO.displayln("div " + now);
-		expList.argumentCounter = current;
+		return "div  " + expList.numOfExps();
 	}
 }

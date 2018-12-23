@@ -9,14 +9,9 @@ class Add extends OperatorExp
 	{
 		return "+";
 	}
-	
-	void emitInstructions() 
+
+	String getInstruction()
 	{
-		int current = expList.argumentCounter;
-		expList.emitInstructions();
-		int now = expList.argumentCounter - current;
-		IO.displayln("add " + now);
-		expList.argumentCounter = current;
+		return "add  " + expList.numOfExps();
 	}
-	
 }

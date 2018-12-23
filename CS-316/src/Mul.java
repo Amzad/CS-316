@@ -9,13 +9,9 @@ class Mul extends OperatorExp
 	{
 		return "*";
 	}
-	
-	void emitInstructions() 
+
+	String getInstruction()
 	{
-		int current = expList.argumentCounter;
-		expList.emitInstructions();
-		int now = expList.argumentCounter - current;
-		IO.displayln("mul " + now);
-		expList.argumentCounter = current;
+		return "mul  " + expList.numOfExps();
 	}
 }

@@ -1,6 +1,5 @@
 class Case extends CaseExp
 {
-	static int gotoCount = 1;
 	Exp exp1;
 	Exp exp2;
 	
@@ -19,14 +18,16 @@ class Case extends CaseExp
 		exp2.printParseTree(indent1);
 	}
 
-	@Override
-	void emitInstructions() {
-		gotoCount++;
+	void emitInstructions(int OUT)
+	{
 		exp1.emitInstructions();
-		IO.displayln("if_f goto " + gotoCount);
+
+		int CASE_LABEL = ++Compiler.label;
+		IO.displayln(Compiler.indent + "if_f goto " + CASE_LABEL);
+
 		exp2.emitInstructions();
-		IO.displayln("goto 1");
-		IO.display(gotoCount + ":\n");
-		
+
+		IO.displayln(Compiler.indent + "goto " + OUT);
+		IO.displayln(CASE_LABEL + ":");
 	}
 }

@@ -9,13 +9,9 @@ class Not extends OperatorExp
 	{
 		return "not";
 	}
-	
-	void emitInstructions() 
+
+	String getInstruction()
 	{
-		int current = expList.argumentCounter;
-		expList.emitInstructions();
-		int now = expList.argumentCounter - current;
-		IO.displayln("not");
-		expList.argumentCounter = current;
+		return "not";
 	}
 }

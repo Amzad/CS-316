@@ -17,11 +17,11 @@ class ConsExp extends SExp
 		carExp.printParseTree(indent1);
 		cdrExp.printParseTree(indent1);
 	}
-	
-	void emitInstructions() {
+
+	void emitInstructions()
+	{
 		carExp.emitInstructions();
 		cdrExp.emitInstructions();
-		IO.displayln("cons");
-		
+		IO.displayln(Compiler.indent + "cons");
 	}
 }

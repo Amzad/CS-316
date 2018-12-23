@@ -15,9 +15,9 @@ class False extends Atom
 		super.printParseTree1(indent);
 		IO.displayln(indent2 + indent2.length() + " #f");
 	}
-	
-	void emitInstructions() 
+
+	void emitInstructions()
 	{
-		IO.displayln("push #f");
+		IO.displayln(Compiler.indent + "push  " + "#f");
 	}
 }

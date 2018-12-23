@@ -16,9 +16,10 @@ class ElseCase extends CaseExp
 		exp.printParseTree(indent1);
 	}
 
-	@Override
-	void emitInstructions() {
+	void emitInstructions(int OUT)
+	{
 		exp.emitInstructions();
-		
+
+		IO.displayln(Compiler.indent + "goto " + OUT);
 	}
 }

@@ -4,6 +4,7 @@ class Int extends Atom
 	
 	Int(int i)
 	{
+		System.out.println("Int");
 		intElem = i;
 	}
 	
@@ -22,9 +23,9 @@ class Int extends Atom
 		super.printParseTree1(indent);
 		IO.displayln(indent2 + indent2.length() + " " + intElem);
 	}
-	
-	void emitInstructions() 
+
+	void emitInstructions()
 	{
-		IO.displayln("push " + intElem);
+		IO.displayln(Compiler.indent + "push  " + intElem);
 	}
 }

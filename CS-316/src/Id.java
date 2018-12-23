@@ -22,9 +22,11 @@ class Id extends Atom
 		super.printParseTree1(indent);
 		IO.displayln(indent2 + indent2.length() + " " + id);
 	}
-	
-	void emitInstructions() 
+
+	void emitInstructions()
 	{
-		IO.displayln("push " + id);
+		// to be coded by you
+		IO.displayln("push #" + id);
+		
 	}
 }

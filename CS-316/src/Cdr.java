@@ -9,10 +9,9 @@ class Cdr extends OperatorExp
 	{
 		return "cdr";
 	}
-	
-	void emitInstructions() 
+
+	String getInstruction()
 	{
-		expList.exp.emitInstructions();
-		IO.displayln("cdr");
+		return "cdr";
 	}
 }

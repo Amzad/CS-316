@@ -9,10 +9,9 @@ class Car extends OperatorExp
 	{
 		return "car";
 	}
-	
-	void emitInstructions() 
+
+	String getInstruction()
 	{
-		expList.exp.emitInstructions();
-		IO.displayln("car");
+		return "car";
 	}
 }

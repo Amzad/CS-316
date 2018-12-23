@@ -9,13 +9,9 @@ class And extends OperatorExp
 	{
 		return "and";
 	}
-	
-	void emitInstructions() 
+
+	String getInstruction()
 	{
-		int current = expList.argumentCounter;
-		expList.emitInstructions();
-		int now = expList.argumentCounter - current;
-		IO.displayln("and " + now);
-		expList.argumentCounter = current;
+		return "and  " + expList.numOfExps();
 	}
 }

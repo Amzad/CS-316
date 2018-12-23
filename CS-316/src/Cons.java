@@ -9,10 +9,9 @@ class Cons extends OperatorExp
 	{
 		return "cons";
 	}
-	
-	void emitInstructions() 
+
+	String getInstruction()
 	{
-		expList.emitInstructions();
-		IO.displayln("cons");
+		return "cons";
 	}
 }

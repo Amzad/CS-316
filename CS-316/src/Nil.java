@@ -8,9 +8,8 @@ class Nil extends SExp
 		IO.displayln(indent1 + indent1.length() + " ()");
 	}
 
-	@Override
-	void emitInstructions() {
-		// TODO Auto-generated method stub
-		IO.displayln("push nil");
+	void emitInstructions()
+	{
+		IO.displayln(Compiler.indent+"push  nil");
 	}
 }

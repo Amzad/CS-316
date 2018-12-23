@@ -4,6 +4,6 @@ abstract class CaseExp
 	{
 		IO.displayln(indent + indent.length() + " <case exp>");
 	}
-	
-	abstract void emitInstructions();
+
+	abstract void emitInstructions(int OUT);
 }

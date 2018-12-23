@@ -212,7 +212,6 @@ public abstract class LexAnalyzer extends IO
 	// If an invalid token is found, issue an error message.
 
 	{
-		//System.out.println(t);
 		int i = driver();
 		if ( state == State.Id )
 			keywordCheck();

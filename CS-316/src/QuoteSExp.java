@@ -15,10 +15,9 @@ class QuoteSExp extends Exp
 		IO.displayln(indent1 + indent1.length() + " '");
 		sExp.printParseTree(indent1);
 	}
-	
-	void emitInstructions() 
+
+	void emitInstructions()
 	{
 		sExp.emitInstructions();
-		
 	}
 }

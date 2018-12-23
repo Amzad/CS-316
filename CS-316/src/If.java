@@ -21,16 +21,22 @@ class If extends ListExp
 		exp2.printParseTree(indent2);
 		exp3.printParseTree(indent2);
 	}
-	
-	void emitInstructions() 
+
+	void emitInstructions()
 	{
 		exp1.emitInstructions();
-		IO.displayln("if_f goto 1");
+
+		int ELSE = ++Compiler.label;
+		IO.displayln(Compiler.indent + "if_f goto " + ELSE);
+
 		exp2.emitInstructions();
-		IO.displayln("goto 2");
-		IO.display("1:\n");
+
+		int OUT = ++Compiler.label;
+		IO.displayln(Compiler.indent + "goto " + OUT);
+		IO.displayln(ELSE+":");
+
 		exp3.emitInstructions();
-		IO.display("2:\n");
-		
+
+		IO.displayln(OUT + ":");
 	}
 }

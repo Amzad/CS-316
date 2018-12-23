@@ -46,8 +46,8 @@ public abstract class IO
 
 	public static void displayln(String s)
 	{
-		outStream.println("	" + s);
-		System.out.println("	" + s);
+		System.out.println(s);
+		outStream.println(s);
 	}
 
 	public static void setIO(String inFile, String outFile)

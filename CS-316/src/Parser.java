@@ -2,6 +2,7 @@
 
 This class is a top-down, recursive-descent parser for the following syntactic categories:
 
+<fun def list and exp> --> <fun def list> "/" <exp>
 <fun def list> --> <fun def> | <fun def> <fun def list> 
 <fun def> --> "(" "define" <header> <exp> ")" 
 <header> --> "(" <fun name> <parameter list> ")" 
@@ -56,6 +57,26 @@ public abstract class Parser extends LexAnalyzer
 	static boolean syntaxErrorFound = false;
 
  
+	public static FunDefListAndExp funDefListAndExp() 
+	// <fun def list and exp> --> <fun def list> "/" <exp>
+	{
+		FunDefList funDefList = funDefList();
+		//System.out.println(t);
+		
+		if ( state == State.Div) {	
+			getToken();
+			Exp exp = exp();
+			return new FunDefListAndExp(funDefList, exp);
+		}
+		//else return new FunDefListAndExp(null, funDefListAndExp);
+		
+		
+		
+		return null;
+		
+		
+	}
+	
 	public static FunDefList funDefList()
 	
 	// <fun def list> --> <fun def> | <fun def> <fun def list>
@@ -75,7 +96,9 @@ public abstract class Parser extends LexAnalyzer
 
 	// <fun def> --> "(" "define" <header> <exp> ")"
 
+
 	{
+		
 		if ( state == State.LParen )
 		{
 			getToken();
@@ -163,8 +186,8 @@ public abstract class Parser extends LexAnalyzer
 	}
 	
 	public static Exp exp()
-
-	// <exp> --> <atom> | <quote> <S exp> | <list exp>
+	
+	// <exp> --> <atom> | <quote> <S exp> | <list exp> 
 	// <atom> --> <id> | <int> | <float> | <floatE> | <false> | <true>
 	
 	{
@@ -317,7 +340,7 @@ public abstract class Parser extends LexAnalyzer
 
 	public static ListExp listExpInside()
 	
-	// <list exp inside> --> <if> | <cond> | <fun call> | <operator exp>
+	// <list exp inside> --> <if> | <cond> | <fun call> | <operator exp> | </>
 
 	{
 		switch ( state )
@@ -338,7 +361,7 @@ public abstract class Parser extends LexAnalyzer
 		case Keyword_car: case Keyword_cdr: case Keyword_cons:	
 
 			return operatorExp();
-
+		
 		default:
 			errorMsg(5);
 			return null;

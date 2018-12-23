@@ -9,13 +9,9 @@ class Eq extends OperatorExp
 	{
 		return "=";
 	}
-	
-	void emitInstructions() 
+
+	String getInstruction()
 	{
-		int current = expList.argumentCounter;
-		expList.emitInstructions();
-		int now = expList.argumentCounter - current;
-		IO.displayln("eq");
-		expList.argumentCounter = current;
+		return "eq";
 	}
 }

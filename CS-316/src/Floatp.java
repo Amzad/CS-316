@@ -22,9 +22,9 @@ class Floatp extends Atom
 		super.printParseTree1(indent);
 		IO.displayln(indent2 + indent2.length() + " " + floatElem);
 	}
-	
-	void emitInstructions() 
+
+	void emitInstructions()
 	{
-		IO.displayln("push " + floatElem);
+		IO.displayln(Compiler.indent + "push  " + floatElem);
 	}
 }

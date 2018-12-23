@@ -2,8 +2,6 @@ class CaseList
 {
 	CaseExp caseExp;
 	CaseList caseList;
-	static int caseCount = 1;
-	static int gotoCount = 1;
 	
 	CaseList(CaseExp ce, CaseList cl)
 	{
@@ -20,13 +18,14 @@ class CaseList
 			p = p.caseList;
 		} while ( p != null );
 	}
-	
-	void emitInstructions() {
-		caseExp.emitInstructions();
-		if (caseList != null) {
-			caseList.emitInstructions();
-		}
-		
-		
+
+	void emitInstructions(int OUT)
+	{
+		CaseList p = this;
+		do
+		{
+			p.caseExp.emitInstructions(OUT);
+			p = p.caseList;
+		} while ( p != null );
 	}
 }

@@ -16,11 +16,11 @@ class Cond extends ListExp
 		IO.displayln(indent2 + indent2.length() + " <case list>");		
 		caseList.printParseTree(indent2+" ");
 	}
-	
-	void emitInstructions() 
+
+	void emitInstructions()
 	{
-		//String valueNow = Integer.toString(caseList.caseCount);
-		caseList.emitInstructions();
-		IO.display("1:\n");
+		int OUT = ++Compiler.label;
+		caseList.emitInstructions(OUT);
+		IO.displayln(OUT + ":");
 	}
 }

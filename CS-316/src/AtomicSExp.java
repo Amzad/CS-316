@@ -16,9 +16,11 @@ class AtomicSExp extends SExp
 		atom.printParseTree1(indent1);
 	}
 
-	@Override
-	void emitInstructions() {
-		atom.emitInstructions();
-		
+	void emitInstructions()
+	{
+		if ( atom instanceof Id )
+			IO.displayln(Compiler.indent + "push  " + ((Id)atom).id);
+		else
+			atom.emitInstructions();
 	}
 }
